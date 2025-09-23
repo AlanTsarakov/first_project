@@ -44,25 +44,36 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title, style: TextStyle(fontSize: 25)),
       ), backgroundColor: Colors.blueGrey,
+      bottomNavigationBar: NavigationBar(destinations: [
+        NavigationDestination(icon: Icon(Icons.accessibility_new_sharp),
+          label: "Page 1",
+          selectedIcon: Icon(Icons.accessibility_new_sharp),),
+        NavigationDestination(icon: Icon(Icons.accessibility_new_sharp),
+          label: "Page 2",
+          selectedIcon: Icon(Icons.accessible_outlined),),
+        NavigationDestination(icon: Icon(Icons.account_circle_sharp),
+          label: "Page 3",
+          selectedIcon: Icon(Icons.accessibility_new_sharp),)
+      ], height: 80,),
       body: Center(
         child: Container(
           child: Column(
             children: [
               Container(
-                width: 390,
-                height: 300,
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height *0.2,
+
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Привет", style: TextStyle(fontSize: 30, fontFamily: "Arial" , fontWeight: FontWeight.bold), )
                   ],
                 ),
-                margin: EdgeInsets.only(bottom: 30, top: 30),
                 decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50))
               ),
               Container(
-                width: 390,
-                height: 300,
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.2,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
