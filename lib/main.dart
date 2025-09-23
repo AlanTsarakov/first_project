@@ -30,10 +30,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  int index = 0;
+  final pages = [
+    Center(child: SizedBox(
+      height: 80, // Минимальная высота
+      child: LinearProgressIndicator(
+        value: 0.7,
+        backgroundColor: Colors.grey.shade200,
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+        borderRadius: BorderRadius.circular(10),
+        minHeight: 30,
+      )
+      ,
+    )
+    ),
+    Center(child: Text("Привет, мир 2", style: TextStyle(fontSize: 20))),
+    Center(child: Text("Привет, мир 3", style: TextStyle(fontSize: 20)))
+  ];
   void _incrementCounter() {
     setState(() {
-      _counter += 3;
+      _counter += 1;
     });
   }
 
@@ -44,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title, style: TextStyle(fontSize: 25)),
       ), backgroundColor: Colors.blueGrey,
-      bottomNavigationBar: NavigationBar(destinations: [
+      bottomNavigationBar: NavigationBar(onDestinationSelected: (index) => setState(() => this.index = index), selectedIndex: index,
+        destinations: [
         NavigationDestination(icon: Icon(Icons.accessibility_new_sharp),
           label: "Page 1",
           selectedIcon: Icon(Icons.accessibility_new_sharp),),
@@ -55,37 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           label: "Page 3",
           selectedIcon: Icon(Icons.accessibility_new_sharp),)
       ], height: 80,),
-      body: Center(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height *0.2,
-
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Привет", style: TextStyle(fontSize: 30, fontFamily: "Arial" , fontWeight: FontWeight.bold), )
-                  ],
-                ),
-                decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50))
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Мир!", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),)
-                  ],
-                ),
-                decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50))
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: pages[index]
     );
   }
 }
