@@ -33,19 +33,22 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title, style: TextStyle(fontSize: 25)),
-      ), backgroundColor: Colors.blueGrey,
-      body: ListView.builder(
-        itemCount: 100, // Количество элементов
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('Элемент $index'),
-          );
-        },
-
-      )
+        appBar: AppBar(
+          backgroundColor: Theme
+              .of(context)
+              .colorScheme
+              .inversePrimary,
+          title: Text(widget.title, style: TextStyle(fontSize: 25)),
+        ), backgroundColor: Colors.blueGrey,
+        body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10, crossAxisSpacing: 10),
+            itemCount: 100,
+            itemBuilder: (context, index) {
+              return Container(color: Colors.blue, child: Center(child: Text("Элемент $index")));
+            },
+        )
     );
   }
 }
